@@ -1,15 +1,17 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
-import Close from '../icons/Close';
+import Logout from '../icons/Logout';
 
-export function IconButton({style, onPress}) {
+export function HeaderIconButton({style, onPress}) {
     return (
         <TouchableOpacity style={[styles.container, style]} onPress={onPress}>
-            <Close stroke={'purple'} />
+            <Logout stroke={'purple'} />
         </TouchableOpacity>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {},
+    container: {
+        marginRight: 16,
+    },
 });
