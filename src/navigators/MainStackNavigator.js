@@ -12,6 +12,7 @@ export function MainStackNavigator() {
                 component={ProductsListScreen}
                 options={{
                     headerTitleAlign: 'center',
+                    title: 'Products List',
                 }}
             />
         </MainStack.Navigator>

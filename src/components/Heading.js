@@ -1,13 +1,14 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
+import {useTheme} from "@react-navigation/native";
 
 export function Heading({children, style, props}) {
-    return <Text {...props} style={[styles.text, style]}>{children}</Text>
+    const {colors} = useTheme();
+    return <Text {...props} style={[styles.text, {color: colors.text}, style]}>{children}</Text>
 }
 
 const styles = StyleSheet.create({
     text: {
         fontSize: 32,
-        color: 'black',
     }
 });
