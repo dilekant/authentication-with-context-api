@@ -11,7 +11,6 @@ import {Loading} from "../components/Loading";
 
 export function RegistrationScreen({navigation}) {
     const {register} = useContext(AuthContext);
-    const [name, setName] = useState('bithovendev');
     const [email, setEmail] = useState('bithovendev@gmail.com');
     const [password, setPassword] = useState('abc');
     const [loading, setLoading] = useState(false);
@@ -22,7 +21,6 @@ export function RegistrationScreen({navigation}) {
             <IconButton name={'close-outline'} style={styles.closeIcon} onPress={() => {navigation.pop();}} />
             <Heading style={styles.title}>REGISTRATION</Heading>
             <Error error={error} />
-            <Input style={styles.input} placeholder={'Username'} value={name} onChangeText={setName} />
             <Input style={styles.input} placeholder={'Email'} keyboardType={'email-address'} value={email} onChangeText={setEmail} />
             <Input style={styles.input} placeholder={'Password'} secureTextEntry value={password} onChangeText={setPassword} />
             <FilledButton

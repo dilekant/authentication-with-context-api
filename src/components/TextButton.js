@@ -1,10 +1,12 @@
 import React from 'react';
 import {Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {useTheme} from "@react-navigation/native";
 
 export function TextButton({title, style, onPress}) {
+    const {colors} = useTheme();
     return (
         <TouchableOpacity style={[styles.container, style]} onPress={onPress}>
-            <Text style={styles.text}>{title.toUpperCase()}</Text>
+            <Text style={[styles.text, {color: colors.primary}]}>{title.toUpperCase()}</Text>
         </TouchableOpacity>
     );
 }
@@ -14,10 +16,9 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 8,
+        padding: 20,
     },
     text: {
-        color: 'purple',
         fontWeight: '500',
         fontSize: 14,
     }

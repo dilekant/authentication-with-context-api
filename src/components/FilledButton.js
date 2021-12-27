@@ -1,9 +1,11 @@
 import React from 'react';
 import {Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {useTheme} from "@react-navigation/native";
 
 export function FilledButton({title, style, onPress}) {
+    const {colors} = useTheme();
     return (
-        <TouchableOpacity style={[styles.container, style]} onPress={onPress}>
+        <TouchableOpacity style={[styles.container, {backgroundColor: colors.primary}, style]} onPress={onPress}>
             <Text style={styles.text}>{title.toUpperCase()}</Text>
         </TouchableOpacity>
     );
@@ -11,7 +13,6 @@ export function FilledButton({title, style, onPress}) {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'purple',
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',

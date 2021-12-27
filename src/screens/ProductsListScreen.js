@@ -1,27 +1,42 @@
-import React, {useContext, useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {useContext, useLayoutEffect} from 'react';
+import {FlatList, StyleSheet} from 'react-native';
 import {HeaderIconButton} from "../components/HeaderIconButton";
 import {AuthContext} from "../contexts/AuthContext";
+import {Product} from "../components/Product";
+import {UserContext} from "../contexts/UserContext";
+import {useGet} from "../hooks/useGet";
 
 export function ProductsListScreen({navigation}) {
     const {logout} = useContext(AuthContext);
-    useEffect(() => {
+
+    useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => <HeaderIconButton onPress={() => {logout()}} />
         })
-    }, [navigation]);
+    }, [navigation, logout]);
+
+    const products = useGet('/api/products');
+
+    function renderProduct ({item: product}) {
+        return <Product product={product} />
+    }
 
     return (
-        <View style={styles.container}>
-            <Text>Welcome to the products list</Text>
-        </View>
+        <FlatList
+            style={styles.productsList}
+            contentContainerStyle={styles.productsListContainer}
+            data={products}
+            renderItem={renderProduct}
+            keyExtractor={product => `${product.id}`}
+        />
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+    productsList: {
+
+    },
+    productsListContainer: {
+
     },
 });
