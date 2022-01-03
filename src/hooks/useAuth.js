@@ -39,10 +39,9 @@ export function useAuth() {
                     password,
                 });
             const user = {
-                email: data.user.email,
-                token: data.jwt,
+                email: data.data.user.email,
+                token: data.data.jwt,
             };
-            console.log(data);
             await storeData('user', user);
             dispatch(createAction('SET_USER', user));
         },

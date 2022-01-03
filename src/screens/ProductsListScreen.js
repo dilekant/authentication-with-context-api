@@ -27,10 +27,10 @@ export function ProductsListScreen({navigation}) {
         })
     }, [navigation, logout, switchTheme]);
 
-    const products = useGet('/api/products');
+    const products = useGet('/api/products?populate=thumb');
 
     function renderProduct ({item: product}) {
-        return <Product product={product} />
+        return <Product product={product.attributes} />
     }
 
     return (

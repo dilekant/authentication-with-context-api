@@ -15,8 +15,8 @@ export function useGet(endpoint, initialValue = []) {
                 }
             })
             .then(({data}) => {
-                console.log(data);
-                setData(data);
+                console.log(data.data);
+                setData(data.data);
             });
     }, [token, endpoint]);
     return data;

@@ -6,7 +6,7 @@ import {Card} from "./Card";
 export function Product({product, onPress}) {
     return(
         <Card style={styles.card} onPress={onPress}>
-            <Image style={styles.thumb} source={{uri: BASE_URL + product.thumb.url}} />
+            <Image style={styles.thumb} source={{uri: BASE_URL + product.thumb.data.attributes.url}} />
             <View style={styles.infoContainer}>
                 <Text style={styles.name}>{product.name}</Text>
                 <Text style={styles.price}>{product.price}</Text>
