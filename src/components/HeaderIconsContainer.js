@@ -1,16 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 
 export function HeaderIconsContainer({children}) {
-    return(
-        <View style={styles.container}>
-            {children}
-        </View>
-    );
+  return <View style={styles.container}>{children}</View>;
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-    },
+  container: {
+    flexDirection: 'row',
+  },
 });
