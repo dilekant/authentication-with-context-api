@@ -46,6 +46,7 @@ export function ProductsListScreen({navigation}) {
       contentContainerStyle={styles.productsListContainer}
       data={products}
       renderItem={renderProduct}
+      numColumns={2}
       keyExtractor={product => `${product.id}`}
     />
   );
@@ -54,7 +55,7 @@ export function ProductsListScreen({navigation}) {
 const styles = StyleSheet.create({
   productsListContainer: {
     paddingVertical: 8,
-    marginHorizontal: 8,
+    marginHorizontal: 16,
   },
   themeButton: {
     marginRight: 16,
