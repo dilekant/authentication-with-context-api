@@ -13,6 +13,8 @@ export function Heading({children, style, props}) {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 32,
+    fontSize: 35,
+    color: '#2E3748',
+    //fontFamily: semibold,
   },
 });

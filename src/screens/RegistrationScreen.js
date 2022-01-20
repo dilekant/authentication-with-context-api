@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {StyleSheet} from 'react-native';
+import {KeyboardAvoidingView, Platform, StyleSheet} from 'react-native';
 import {Heading} from '../components/Heading';
 import {Input} from '../components/Input';
 import {FilledButton} from '../components/FilledButton';
@@ -8,13 +8,43 @@ import {IconButton} from '../components/IconButton';
 import {AuthContainer} from '../components/AuthContainer';
 import {AuthContext} from '../contexts/AuthContext';
 import {Loading} from '../components/Loading';
+import PasswordInput from '../components/PasswordInput';
 
 export function RegistrationScreen({navigation}) {
   const {register} = useContext(AuthContext);
+  const [name, setName] = useState('bithovendev');
   const [email, setEmail] = useState('bithovendev@gmail.com');
   const [password, setPassword] = useState('abc');
+  const [showPassword, setShowPassword] = useState(true);
+  const [passwordAgain, setPasswordAgain] = useState('abc');
+  const [showPasswordAgain, setShowPasswordAgain] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
+  const signUp = async () => {
+    if (
+      name === '' ||
+      email === '' ||
+      password === '' ||
+      passwordAgain === ''
+    ) {
+      setError('Fill in the blanks');
+    } else {
+      if (password === passwordAgain) {
+        try {
+          setLoading(true);
+          await register(name, email, password);
+          navigation.pop();
+        } catch (e) {
+          console.log(e);
+          setError(e.message);
+          setLoading(false);
+        }
+      } else {
+        setError('Passwords do not match');
+      }
+    }
+  };
 
   return (
     <AuthContainer>
@@ -25,36 +55,46 @@ export function RegistrationScreen({navigation}) {
           navigation.pop();
         }}
       />
-      <Heading style={styles.title}>REGISTRATION</Heading>
+      <Heading style={styles.title}>Sign Up</Heading>
       <Error error={error} />
       <Input
-        style={styles.input}
-        placeholder={'Email'}
+        style={styles.inputContainer}
+        placeholder={'Name'}
+        value={name}
+        onChangeText={setName}
+        title={'Name'}
+      />
+      <Input
+        style={styles.inputContainer}
+        placeholder={'E-Mail'}
         keyboardType={'email-address'}
         value={email}
         onChangeText={setEmail}
+        title={'E-Mail'}
       />
-      <Input
-        style={styles.input}
+      <PasswordInput
+        style={styles.inputContainer}
         placeholder={'Password'}
-        secureTextEntry
+        secureTextEntry={showPassword}
         value={password}
         onChangeText={setPassword}
+        title={'Password'}
+        onPress={() => setShowPassword(!showPassword)}
+        showPassword={showPassword}
+      />
+      <PasswordInput
+        placeholder={'Retype Password'}
+        secureTextEntry={showPasswordAgain}
+        value={passwordAgain}
+        onChangeText={setPasswordAgain}
+        title={'Retype Password'}
+        onPress={() => setShowPasswordAgain(!showPasswordAgain)}
+        showPassword={showPasswordAgain}
       />
       <FilledButton
-        title={'Register'}
+        title={'Sign Up'}
         style={styles.registerButton}
-        onPress={async () => {
-          try {
-            setLoading(true);
-            await register(email, password);
-            navigation.pop();
-          } catch (e) {
-            console.log(e);
-            setError(e.message);
-            setLoading(false);
-          }
-        }}
+        onPress={() => signUp()}
       />
       <Loading loading={loading} />
     </AuthContainer>
@@ -62,14 +102,26 @@ export function RegistrationScreen({navigation}) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   title: {
     marginBottom: 48,
   },
-  input: {
-    marginVertical: 8,
+  inputContainer: {
+    marginBottom: 20,
+  },
+  passwordContainer: {
+    width: '100%',
+  },
+  eyeContainer: {
+    right: 20,
+    position: 'absolute',
+    height: '100%',
+    justifyContent: 'center',
   },
   registerButton: {
-    marginVertical: 32,
+    marginVertical: 35,
   },
   closeIcon: {
     position: 'absolute',

@@ -5,7 +5,11 @@ export const lightTheme = {
   colors: {
     ...DefaultTheme.colors,
     background: 'white',
-    primary: 'purple',
+    primary: '#3B83FC',
     text: 'black',
+    inputBorder: '#E3EAF2',
+    inputColor: '#2E3748',
+    inputTextColor: '#97A6BA',
+    singUpText: '#9FA5BB',
   },
 };

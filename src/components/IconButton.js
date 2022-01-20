@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {useTheme} from '@react-navigation/native';
-import Close from '../icons/Close';
+import Close from '../assets/icons/Close';
 
 export function IconButton({style, onPress}) {
   const {colors} = useTheme();

@@ -1,59 +1,77 @@
 import React, {useContext, useState} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 import {Heading} from '../components/Heading';
 import {Input} from '../components/Input';
 import {FilledButton} from '../components/FilledButton';
-import {TextButton} from '../components/TextButton';
 import {Error} from '../components/Error';
 import {AuthContainer} from '../components/AuthContainer';
 import {AuthContext} from '../contexts/AuthContext';
 import {Loading} from '../components/Loading';
+import PasswordInput from '../components/PasswordInput';
 
 export function LoginScreen({navigation}) {
+  const {colors} = useTheme();
   const {login} = useContext(AuthContext);
   const [email, setEmail] = useState('bithovendev@gmail.com');
   const [password, setPassword] = useState('abc');
+  const [showPassword, setShowPassword] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const signIn = async () => {
+    if (email === '' || password === '') {
+      setError('Fill in the blanks');
+    } else {
+      try {
+        setLoading(true);
+        await login(email, password);
+      } catch (e) {
+        console.log(e);
+        setError(e.message);
+        setLoading(false);
+      }
+    }
+  };
+
   return (
     <AuthContainer>
-      <Heading style={styles.title}>LOGIN</Heading>
+      <Heading style={styles.title}>Sign In</Heading>
       <Error error={error} />
       <Input
-        style={styles.input}
-        placeholder={'Email'}
+        style={styles.inputContainer}
+        styleInput={styles.input}
+        placeholder={'E-Mail'}
         keyboardType={'email-address'}
         value={email}
         onChangeText={setEmail}
+        title={'E-Mail'}
       />
-      <Input
-        style={styles.input}
+      <PasswordInput
         placeholder={'Password'}
-        secureTextEntry
+        secureTextEntry={showPassword}
         value={password}
         onChangeText={setPassword}
+        title={'Password'}
+        onPress={() => setShowPassword(!showPassword)}
+        showPassword={showPassword}
       />
       <FilledButton
-        title={'Login'}
+        title={'Sign In'}
         style={styles.loginButton}
-        onPress={async () => {
-          try {
-            setLoading(true);
-            await login(email, password);
-          } catch (e) {
-            console.log(e);
-            setError(e.message);
-            setLoading(false);
-          }
-        }}
+        onPress={() => signIn()}
       />
-      <TextButton
-        title={'Have u an account? Create one'}
-        onPress={() => {
-          navigation.navigate('Registration');
-        }}
-      />
+      <View style={styles.textContainer}>
+        <Text style={[styles.text, {color: colors.singUpText}]}>
+          Don’t have an account?{' '}
+        </Text>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Registration');
+          }}>
+          <Text style={styles.textSignUp}> Sign up</Text>
+        </TouchableOpacity>
+      </View>
       <Loading loading={loading} />
     </AuthContainer>
   );
@@ -63,10 +81,23 @@ const styles = StyleSheet.create({
   title: {
     marginBottom: 48,
   },
-  input: {
-    marginVertical: 8,
+  inputContainer: {
+    marginBottom: 20,
   },
   loginButton: {
-    marginVertical: 32,
+    marginTop: 35,
+  },
+  textContainer: {
+    marginTop: 18,
+    flexDirection: 'row',
+  },
+  text: {
+    fontSize: 15,
+    //fontFamily: 'medium',
+  },
+  textSignUp: {
+    color: '#3B83FC',
+    fontSize: 15,
+    //fontFamily: 'medium',
   },
 });

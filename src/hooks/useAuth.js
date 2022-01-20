@@ -52,10 +52,10 @@ export function useAuth() {
         await storeRemoveItem('user');
         dispatch(createAction('REMOVE_USER'));
       },
-      register: async (email, password) => {
+      register: async (name, email, password) => {
         await sleep(2000);
         await axios.post(`${BASE_URL}/api/auth/local/register`, {
-          username: email,
+          username: name,
           email: email,
           password: password,
         });

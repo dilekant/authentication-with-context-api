@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
-import Logout from '../icons/Logout';
+import Logout from '../assets/icons/Logout';
 import {useTheme} from '@react-navigation/native';
 
 export function HeaderIconButton({style, onPress}) {

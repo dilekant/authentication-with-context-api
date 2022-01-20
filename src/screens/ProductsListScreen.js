@@ -5,7 +5,7 @@ import {AuthContext} from '../contexts/AuthContext';
 import {ThemeContext} from '../contexts/ThemeContext';
 import {Product} from '../components/Product';
 import {useGet} from '../hooks/useGet';
-import Sun from '../icons/Sun';
+import Sun from '../assets/icons/Sun';
 import {HeaderIconsContainer} from '../components/HeaderIconsContainer';
 import {useTheme} from '@react-navigation/native';
 
