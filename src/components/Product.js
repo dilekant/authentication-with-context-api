@@ -54,10 +54,10 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 16,
     color: '#9FA5BB',
-    //fontFamily: 'font',
+    fontFamily: 'Sofia-Pro-Medium',
   },
   price: {
     fontSize: 14,
-    //fontFamily: 'font',
+    fontFamily: 'Sofia-Pro-Medium',
   },
 });

@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     paddingRight: 7,
     fontSize: 12,
     top: -8,
-    //fontFamily: 'medium',
+    fontFamily: 'Sofia-Pro-Medium',
   },
   input: {
     width: '100%',

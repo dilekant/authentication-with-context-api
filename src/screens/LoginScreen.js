@@ -93,11 +93,11 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 15,
-    //fontFamily: 'medium',
+    fontFamily: 'Sofia-Pro-Medium',
   },
   textSignUp: {
     color: '#3B83FC',
     fontSize: 15,
-    //fontFamily: 'medium',
+    fontFamily: 'Sofia-Pro-Medium',
   },
 });

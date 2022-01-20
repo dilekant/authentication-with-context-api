@@ -15,6 +15,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 35,
     color: '#2E3748',
-    //fontFamily: semibold,
+    fontFamily: 'Sofia-Pro-SemiBold',
   },
 });

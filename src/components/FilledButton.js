@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '500',
     fontSize: 14,
-    //fontFamily: 'semibold',
+    fontFamily: 'Sofia-Pro-SemiBold',
   },
   arrowContainer: {
     right: 12,
