@@ -13,8 +13,8 @@ import PasswordInput from '../components/PasswordInput';
 export function LoginScreen({navigation}) {
   const {colors} = useTheme();
   const {login} = useContext(AuthContext);
-  const [email, setEmail] = useState('bithovendev@gmail.com');
-  const [password, setPassword] = useState('abc');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');

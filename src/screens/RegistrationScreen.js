@@ -12,11 +12,11 @@ import PasswordInput from '../components/PasswordInput';
 
 export function RegistrationScreen({navigation}) {
   const {register} = useContext(AuthContext);
-  const [name, setName] = useState('bithovendev');
-  const [email, setEmail] = useState('bithovendev@gmail.com');
-  const [password, setPassword] = useState('abc');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(true);
-  const [passwordAgain, setPasswordAgain] = useState('abc');
+  const [passwordAgain, setPasswordAgain] = useState('');
   const [showPasswordAgain, setShowPasswordAgain] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');

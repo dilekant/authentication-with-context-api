@@ -7,6 +7,7 @@ export function FilledButton({title, style, onPress}) {
   const {colors} = useTheme();
   return (
     <TouchableOpacity
+      activeOpacity={0.8}
       style={[styles.container, {backgroundColor: colors.primary}, style]}
       onPress={onPress}>
       <Text style={styles.text}>{title}</Text>
